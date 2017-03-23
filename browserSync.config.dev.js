@@ -1,8 +1,6 @@
 // This file configures the development web server
 // which supports hot reloading and synchronized testing.
 
-// Require Browsersync along with webpack and middleware for it
-import browserSync from 'browser-sync';
 // Required for react-router browserHistory
 // see https://github.com/BrowserSync/browser-sync/issues/204#issuecomment-102623643
 import historyApiFallback from 'connect-history-api-fallback';
@@ -13,7 +11,7 @@ import config from './webpack.config.dev';
 
 const bundler = webpack(config);
 
-// Run Browsersync and use middleware for Hot Module Replacement
+//export browser sync dev config
 //export keyword not working with gulp babel
 module.exports = {
   port: 3000,
