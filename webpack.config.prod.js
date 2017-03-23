@@ -12,7 +12,7 @@ const GLOBALS = {
   __DEV__: false
 };
 
-export default {
+module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
   },
