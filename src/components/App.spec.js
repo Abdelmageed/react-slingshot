@@ -1,3 +1,4 @@
+import App from './App';
 describe("A suite is just a function", ()=> {
   let a;
 
