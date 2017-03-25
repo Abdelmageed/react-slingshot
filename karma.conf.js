@@ -4,7 +4,7 @@ delete wepbackConfig.entry;
 
 module.exports = function(config) {
   config.set({
-    basePath: 'src',
+    basePath: 'src/client',
     frameworks: ['jasmine'],
     preprocessors: {
 //      'src/**/(*.js)|(!spec.js)': ['coverage']

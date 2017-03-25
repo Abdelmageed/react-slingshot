@@ -10,9 +10,9 @@ module.exports = {
   devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
   entry: [
     // must be first entry to properly set public path
-    './src/webpack-public-path',
+    './src/client/webpack-public-path',
     'webpack-hot-middleware/client?reload=true',
-    path.resolve(__dirname, 'src/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
+    path.resolve(__dirname, 'src/client/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
   ],
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
@@ -28,7 +28,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
-      template: 'src/index.ejs',
+      template: 'src/client/index.ejs',
       minify: {
         removeComments: true,
         collapseWhitespace: true
@@ -41,7 +41,7 @@ module.exports = {
       noInfo: true, // set to false to see a list of every file being bundled.
       options: {
         sassLoader: {
-          includePaths: [path.resolve(__dirname, 'src', 'scss')]
+          includePaths: [path.resolve(__dirname, 'src/client', 'scss')]
         },
         context: '/',
         postcss: () => [autoprefixer],

@@ -10,7 +10,7 @@ module.exports = {
   },
 
   files: [
-    'src/*.html'
+    'src/client/*.html'
   ],
 
   middleware: [historyApiFallback()]
