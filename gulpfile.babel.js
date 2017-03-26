@@ -4,7 +4,9 @@ const requireDir = require('require-dir');
 //import all tasks
 requireDir('./gulp');
 
-gulp.task('default', ['browser-sync:dev', 'tdd']);
+gulp.task('default', ['browser-sync:dev', 'tdd', 'server:start']);
+
+//changesz
 
 
 
