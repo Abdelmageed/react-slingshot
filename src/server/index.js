@@ -1,5 +1,5 @@
 import config from './config';
-import app from './server';
+import app from './app';
 //import mongoose from 'mongoose';
 //import User from './models/User';
 
