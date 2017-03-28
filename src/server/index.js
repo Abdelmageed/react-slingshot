@@ -1,11 +1,46 @@
 import config from './config';
 import app from './app';
+
+//import portFinder from 'portfinder'
 //import mongoose from 'mongoose';
 //import User from './models/User';
+//var server;
+//if(server && server.close){
+//  server.close();
+//}
 
-const server = app.listen(config.PORT, 'localhost', ()=> {
-  console.log(`express server started at localhost:${config.PORT}`);
-});
+let server;
+var isPortTaken = function(port, fn) {
+  var net = require('net')
+  var tester = net.createServer()
+  .once('error', function (err) {
+    if (err.code != 'EADDRINUSE') return fn(err)
+    fn(null, true)
+  })
+  .once('listening', function() {
+    tester.once('close', function() { fn(null, false) })
+    .close()
+  })
+  .listen(port)
+}
+
+function startServer(err, isPortTaken){
+  if(! (err && isPortTaken)){
+      server = app.listen(config.PORT, 'localhost', ()=> {
+      console.log(`express server started at localhost:${config.PORT}`);
+    });
+  }
+}
+
+isPortTaken(config.PORT, startServer);
+
+//process.on('exit', (code) => {
+//  setTimeout(()=> {
+//    server.close();
+//  }, 0);
+////  console.log('server closed, now killing');
+////  process.kill();
+//});
 //, function() {
 //  console.log(`express server listening on port ${config.PORT}`);
 //}
