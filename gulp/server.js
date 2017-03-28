@@ -3,7 +3,7 @@ import path from 'path';
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import reload from 'reload';
-import nodemon from 'nodemon';
+import nodemon from 'gulp-nodemon';
 import babel from 'gulp-babel';
 import Cache from 'gulp-file-cache';
 const cache = new Cache();
@@ -34,8 +34,8 @@ gulp.task('backend:build', function(done) {
   webpack(backendConfig).run(onBuild(done));
 });
 
-gulp.task('backend:watch', function() {
-  server.close();
+gulp.task('backend:watch', function(done) {
+//  server.close();
   webpack(backendConfig).watch(100, (err, stats)=> {
     onBuild()(err, stats);
 //    nodemon.emit('restart', 10);
@@ -43,8 +43,8 @@ gulp.task('backend:watch', function() {
   });
 });
 
-gulp.task('backend:run', ['backend:watch'], function() {
-    nodemon({
+gulp.task('backend:run', gulp.series('backend:watch', function() {
+    return nodemon({
     execMap: {
       js: 'node'
     },
@@ -55,26 +55,26 @@ gulp.task('backend:run', ['backend:watch'], function() {
   }).on('restart', function() {
     gutil.log('Restarted!');
   });
-});
+}));
 
-let reloadServer;
-gulp.task('server:start', function(done){
-  let server = app.listen(config.PORT, 'localhost', ()=> {
-    gutil.log(`express server started at localhost:${config.PORT}`);
-    done();
-  });
-  reloadServer = reload(server, app);
-});
-
-gulp.task('server:reload', function(done){
-//  server.close();
-//  server = app.listen(config.PORT, 'localhost', ()=> {
-  reloadServer.reload();
-  gutil.log(`express server restarted at localhost:${config.PORT}`);
-  done();
+//let reloadServer;
+//gulp.task('server:start', function(done){
+//  let server = app.listen(config.PORT, 'localhost', ()=> {
+//    gutil.log(`express server started at localhost:${config.PORT}`);
+//    done();
 //  });
-});
-
+//  reloadServer = reload(server, app);
+//});
+//
+//gulp.task('server:reload', function(done){
+////  server.close();
+////  server = app.listen(config.PORT, 'localhost', ()=> {
+//  reloadServer.reload();
+//  gutil.log(`express server restarted at localhost:${config.PORT}`);
+//  done();
+////  });
+//});
+//
 gulp.task('compile', ()=> {
 
   return gulp
@@ -86,9 +86,9 @@ gulp.task('compile', ()=> {
  
 });
 
-gulp.task('server:dev', ['compile'], (done)=> {
+gulp.task('server:dev', gulp.series(['compile'], (done)=> {
   let called = false;
-  return nodemon({
+  let stream = nodemon({
     script: 'dest/server',
     watch: ['src/server/**/*.js'],
     tasks: ['compile']
@@ -100,15 +100,15 @@ gulp.task('server:dev', ['compile'], (done)=> {
     }
   })
   .on('restart', ()=> {
-    gutil.log('restarted backend server');
+    gutil.log(gutil.colors.blue('restarted backend server'));
   })
   .on('crash', ()=> {
-    gutil.log('Backend app crashed', gutil.colors.red);
+    gutil.log( gutil.colors.red('Backend app crashed'));
     stream.emit('restart', 10);
   });
 //  done();
-//  return stream;
-});
+  return stream;
+}));
 
 //const watcher = gulp.watch('src/server/**/*.js', ['server:reload']);
 //watcher.on('change', (event)=> {

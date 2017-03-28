@@ -7,7 +7,7 @@ const webpack = require('webpack');
 const webpackProdConfig = require('../webpack.config.prod.js');
 
 
-gulp.task('build', ['build:clean'], function (done) {
+gulp.task('build', gulp.series(buildClean, function (done) {
   
   gutil.log('Generating minified bundle. This will take a moment...');
 
@@ -25,9 +25,9 @@ gulp.task('build', ['build:clean'], function (done) {
     done();
   });
 
-});
+}));
 
-gulp.task('build:clean', function (done) {
+function buildClean(done) {
   gutil.log('cleaning dist directory');
   
   rimraf(path.join(__dirname, '/dist'), function (err) {
@@ -38,4 +38,6 @@ gulp.task('build:clean', function (done) {
       done();
     });
   })
-});
+}
+
+gulp.task('build:clean', buildClean);

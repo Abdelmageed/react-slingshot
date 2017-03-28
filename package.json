@@ -76,6 +76,7 @@
     "gulp": "3.9.1",
     "gulp-babel": "6.1.2",
     "gulp-file-cache": "0.0.1",
+    "gulp-hub": "4.1.0",
     "gulp-nodemon": "2.2.1",
     "gulp-util": "3.0.8",
     "html-webpack-plugin": "2.24.1",
@@ -109,7 +110,8 @@
     "webpack-bundle-analyzer": "2.1.1",
     "webpack-dev-middleware": "1.9.0",
     "webpack-hot-middleware": "2.13.2",
-    "webpack-md5-hash": "0.0.5"
+    "webpack-md5-hash": "0.0.5",
+    "webpack-stream": "3.2.0"
   },
   "keywords": [
     "react",

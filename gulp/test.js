@@ -24,10 +24,10 @@ gulp.task('test', function (done) {
     server.start();
 });
 
-gulp.task('tdd', function () {
+gulp.task('tdd', function (done) {
   const server =  new TestServer({
         configFile: path.join(__dirname, '..', 'karma.conf.js')
     });
   server.start();
-
+  done();
 });
