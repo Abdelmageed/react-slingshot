@@ -1,7 +1,5 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
-const browserSyncDevConfig = require('../browserSync.config.dev.js');
-const browserSyncProdConfig = require('../browserSync.config.prod.js');
 import HubRegistry from 'gulp-hub';
 
 const hub = new HubRegistry(['./gulp/build.js']);
@@ -9,10 +7,13 @@ const hub = new HubRegistry(['./gulp/build.js']);
 gulp.registry(hub);
 
 
+//instanstiating a webpack compiler runs it!
+//That runs outside of gulp tasks, and blocks nodemon
+//instead import the config with the webpack compiler on task run
 gulp.task('browser-sync:dev', function(done) {
-  browserSync.init(browserSyncDevConfig, done);
+  browserSync.init(require('../browserSync.config.dev.js'), done);
 });
 
 gulp.task('browser-sync:prod', gulp.series('build', function(done) {
-  browserSync.init(browserSyncProdConfig, done);
+  browserSync.init(require('../browserSync.config.prod.js'), done);
 }));
