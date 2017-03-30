@@ -19,6 +19,7 @@ module.exports = {
       {test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
     ]
   },
+  stats: "errors-only",
   output: {
     path: path.join(__dirname, 'dest'),
     filename: 'backend.js'
