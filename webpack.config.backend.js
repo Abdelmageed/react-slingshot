@@ -21,7 +21,7 @@ module.exports = {
   },
   stats: "errors-only",
   output: {
-    path: path.join(__dirname, 'dest'),
+    path: path.join(__dirname, 'dist'),
     filename: 'backend.js'
   },
   externals: nodeModules,
