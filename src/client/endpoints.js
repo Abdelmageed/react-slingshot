@@ -1,5 +1,6 @@
 import axios from 'axios';
-const apiUrl = 'http://localhost:3007';
+import config from '../../config';
+const apiUrl = `http://localhost:${config.PORT}`;
 export const axiosInstance = axios.create({
   baseURL: apiUrl,
   validateStatus: (status)=> {
