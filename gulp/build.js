@@ -1,43 +1,38 @@
-const path = require('path');
-const gulp = require('gulp');
-const gutil = require('gulp-util');
-const rimraf = require('rimraf');
-const fs = require('fs');
-const webpack = require('webpack');
-const webpackProdConfig = require('../webpack.config.prod.js');
+import path from'path';
+import gulp from'gulp';
+import gutil from'gulp-util';
+import rimraf from'rimraf';
+import fs from'fs';
+import webpack from'webpack';
 
+import webpackProdConfig from'../webpack.config.prod';
+import webpackBackendConfig from '../webpack.config.backend';
+import {onBuild} from './util';
 
-gulp.task('build', gulp.series(buildClean, function (done) {
+gulp.task('build:front', function (done) {
+  process.env.NODE_ENV = 'production';
   
-  gutil.log('Generating minified bundle. This will take a moment...');
+  gutil.log('Generating front-end minified bundle. This will take a moment...');
+  // this assures React is built in prod mode and that the Babel dev config doesn't apply.
+  webpack(webpackProdConfig).run(onBuild(done));
+});
 
-  process.env.NODE_ENV = 'production'; // this assures React is built in prod mode and that the Babel dev config doesn't apply.
+gulp.task('build:back', function(done) {
+  gutil.log('Generating back-end bundle...');
+  webpack(webpackBackendConfig).run(onBuild(done));
+});
 
-  webpack(webpackProdConfig).run(function (err, stats) {
-    if (err) {
-      throw new gutil.PluginError('build', err);
-    }
-    gutil.log('[build]', stats.toString({
-      chunks: false, // Makes the build much quieter
-      colors: true
-    }));
-    
-    done();
-  });
-
-}));
-
-function buildClean(done) {
-  gutil.log('cleaning dist directory');
+gulp.task('build:clean', function(done) {
+    gutil.log(gutil.colors.yellow('cleaning dist directory'));
   
   rimraf(path.join(__dirname, '/dist'), function (err) {
     if (err)
         throw new gutil.PluginError('build:clean', err);
     fs.mkdir(path.join(__dirname, '/dist'), function () {
-      gutil.log('dist directory cleaned')
+      gutil.log(gutil.colors.green('dist directory cleaned'));
       done();
     });
   })
-}
+});
 
-gulp.task('build:clean', buildClean);
+gulp.task('build', gulp.series('build:clean', 'build:front', 'build:back'));
