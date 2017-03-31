@@ -6,23 +6,12 @@ import nodemon from 'nodemon';
 import babel from 'gulp-babel';
 import Cache from 'gulp-file-cache';
 const cache = new Cache();
+import shell from 'gulp-shell'; 
+
 import backendConfig from '../webpack.config.backend';
+import {onBuild} from './util';
 
 
-function onBuild(done) {
-  return function(err, stats) {
-    if(err) {
-      gutil.log(gutil.colors.red('Error', err));
-    }
-    else {
-      console.log(gutil.colors.red(stats.toString('errors-only')));
-    }
-
-    if(done) {
-      done();
-    }
-  }
-}
 
 gulp.task('backend:build', function(done) {
   webpack(backendConfig).run(onBuild(done));
@@ -36,7 +25,7 @@ gulp.task('backend:watch', function(done) {
   });
 });
 
-gulp.task('backend:run', gulp.series(['backend:watch'], function(done) {
+gulp.task('backend:run:dev', gulp.series(['backend:watch'], function(done) {
     nodemon({
     execMap: {
       js: 'node'
@@ -51,3 +40,5 @@ gulp.task('backend:run', gulp.series(['backend:watch'], function(done) {
   });
   done();
 }));
+
+gulp.task('backend:run:prod', shell.task('node dist/backend.js'));

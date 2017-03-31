@@ -3,7 +3,8 @@
   "version": "5.0.0",
   "description": "Starter kit for creating apps with React and Redux",
   "engines": {
-    "npm": ">=3"
+    "npm": ">=3",
+    "node": "6.9.1"
   },
   "scripts": {
     "backend": "babel-node src/server/index.js",
@@ -12,6 +13,7 @@
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message",
     "start": "gulp",
+    "start:prod": "gulp run:prod",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
@@ -36,6 +38,7 @@
     "cors": "2.8.1",
     "express": "4.15.2",
     "express-session": "1.15.1",
+    "gulp-shell": "0.6.3",
     "morgan": "1.8.1",
     "object-assign": "4.1.0",
     "passport": "0.3.2",
