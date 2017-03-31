@@ -14,6 +14,6 @@ gulp.task('browser-sync:dev', function(done) {
   browserSync.init(require('../browserSync.config.dev.js'), done);
 });
 
-gulp.task('browser-sync:prod', gulp.series('build', function(done) {
+gulp.task('browser-sync:prod', function(done) {
   browserSync.init(require('../browserSync.config.prod.js'), done);
-}));
+});
