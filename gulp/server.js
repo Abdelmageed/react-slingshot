@@ -41,4 +41,4 @@ gulp.task('backend:run:dev', gulp.series(['backend:watch'], function(done) {
   done();
 }));
 
-gulp.task('backend:run:prod', shell.task('node dist/backend.js'));
+gulp.task('backend:run:prod', shell.task('cross-env NODE_ENV=production && node dist/backend.js'));

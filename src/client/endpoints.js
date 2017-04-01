@@ -1,6 +1,6 @@
 import axios from 'axios';
 import config from '../../config';
-const apiUrl = `http://localhost:${config.PORT}`;
+const apiUrl = `/api`;
 export const axiosInstance = axios.create({
   baseURL: apiUrl,
   validateStatus: (status)=> {
