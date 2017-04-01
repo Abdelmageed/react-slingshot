@@ -24,20 +24,21 @@ var isPortTaken = function(port, fn) {
   .listen(port)
 }
 
+const PORT = process.env.PORT || 3007;
 function startServer(err, isPortTaken){
   if(! (err && isPortTaken)){
-      server = app.listen(config.PORT, 'localhost', ()=> {
-      console.log(`express server started at localhost:${config.PORT}`);
+      server = app.listen(PORT, 'localhost', ()=> {
+      console.log(`express server started at localhost:${PORT}`);
     });
   }
 }
 
 
 if(dev) {
-  isPortTaken(config.PORT, startServer);
+  isPortTaken(PORT, startServer);
 } else {
-  server = app.listen(config.PORT, 'localhost', ()=> {
-      console.log(`express server started at localhost:${config.PORT}`);
+  server = app.listen(PORT, 'localhost', ()=> {
+      console.log(`express server started at localhost:${PORT}`);
   });
 }
 
