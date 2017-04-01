@@ -27,7 +27,7 @@ app.options('*', cors())
 //app.get('/getIt', (req, res)=> {
 //  res.end('Helloa from Express');
 //});
-app.use (serveFavicon (__dirname + '/dist/favicon.ico'))
+app.use (serveFavicon (path.resolve('dist/favicon.ico')))
 app.use(express.static(path.resolve('dist')));
 app.get('/', (req, res)=> {
   res.sendFile(path.resolve('dist/index.html'));
