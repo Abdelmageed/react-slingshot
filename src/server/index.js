@@ -1,9 +1,8 @@
+import mongoose from 'mongoose';
+
 import config from '../../config';
 import app from './app';
-
-//import portFinder from 'portfinder'
-//import mongoose from 'mongoose';
-//import User from './models/User';
+import User from './models/User';
 //var server;
 //if(server && server.close){
 //  server.close();
@@ -53,11 +52,11 @@ if(dev) {
 //  console.log(`express server listening on port ${config.PORT}`);
 //}
 
-//const user = new User({local: {username: 'Abdelmageed', password: 'password123'}});
-//user.save((err, newUser)=> {
-//  console.log('user saved');
-//});
-//if(!mongoose.connection.db)
-//  mongoose.connect(config.DATA_URL);
+const user = new User({local: {username: 'Abdelmageed', password: 'password123'}});
+user.save((err, newUser)=> {
+  console.log('user saved');
+});
+if(!mongoose.connection.db)
+  mongoose.connect(config.DATA_URL);
 
 export default server;

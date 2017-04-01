@@ -1,5 +1,5 @@
 import express from 'express';
-//import passport from './passport';
+import passport from './passport';
 import serveFavicon from 'serve-favicon';
 import bodyParser from 'body-parser';
 import session from 'express-session';
@@ -20,8 +20,8 @@ app.use(session({
                 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.options('*', cors())
 
 //app.get('/getIt', (req, res)=> {
