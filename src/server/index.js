@@ -10,7 +10,7 @@ import app from './app';
 //}
 
 let server;
-var isPortTaken = function(port, fn) {
+const isPortTaken = function(port, fn) {
   var net = require('net')
   var tester = net.createServer()
   .once('error', function (err) {
@@ -23,11 +23,11 @@ var isPortTaken = function(port, fn) {
   })
   .listen(port)
 }
-
+const PORT = process.env.PORT | 3007;
 function startServer(err, isPortTaken){
   if(! (err && isPortTaken)){
-      server = app.listen(config.PORT, 'localhost', ()=> {
-      console.log(`express server started at localhost:${config.PORT}`);
+      server = app.listen(PORT, 'localhost', ()=> {
+      console.log(`express server started at localhost:${PORT}`);
     });
   }
 }
