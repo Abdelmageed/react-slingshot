@@ -8,7 +8,7 @@ import app from './app';
 //if(server && server.close){
 //  server.close();
 //}
-
+const dev = (process.env.NODE_ENV !== 'production');
 let server;
 var isPortTaken = function(port, fn) {
   var net = require('net')
@@ -32,7 +32,14 @@ function startServer(err, isPortTaken){
   }
 }
 
-isPortTaken(config.PORT, startServer);
+
+if(dev) {
+  isPortTaken(config.PORT, startServer);
+} else {
+  server = app.listen(config.PORT, 'localhost', ()=> {
+      console.log(`express server started at localhost:${config.PORT}`);
+  });
+}
 
 //process.on('exit', (code) => {
 //  setTimeout(()=> {
