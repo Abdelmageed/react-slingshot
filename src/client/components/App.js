@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import AuthForm from '../containers/AuthForm';
 import {axiosInstance as axios, getIt} from '../endpoints';
 
 export default class App extends Component{
@@ -28,12 +28,11 @@ export default class App extends Component{
           });
       });
   }
-  
+  //
   render(){
     return (
       <div>
-        <div>{this.state.text}</div>
-        <button onClick={this.getIt}>Get it</button>
+        <AuthForm />
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import config from '../../config';
-const apiUrl = '/api';
+import config from '../../../config';
+const apiUrl = `http://localhost:${config.PORT}/api`;
 export const axiosInstance = axios.create({
   baseURL: apiUrl,
   validateStatus: (status)=> {
@@ -9,4 +9,10 @@ export const axiosInstance = axios.create({
 });
 axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-export const getIt = '/getIt';
+export const login = '/login';
+
+export const checkUsername = '/check_username';
+
+export const signup = '/signup';
+
+export const logout = '/logout';
