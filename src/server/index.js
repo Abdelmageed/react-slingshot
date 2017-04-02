@@ -58,5 +58,5 @@ user.save((err, newUser)=> {
 });
 if(!mongoose.connection.db)
   mongoose.connect(config.DATA_URL);
-
+console.log(`connected to db at ${config.DATA_URL}`)
 export default server;
