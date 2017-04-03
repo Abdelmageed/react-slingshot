@@ -28,11 +28,10 @@ export default class App extends Component{
           });
       });
   }
-  //
   render(){
     return (
       <div>
-        <AuthForm />
+        <AuthForm className="auth-form"/>
       </div>
     )
   }

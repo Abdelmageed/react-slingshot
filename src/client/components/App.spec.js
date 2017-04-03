@@ -1,14 +1,16 @@
-import App from './App';
-describe("A suite is just a function", ()=> {
-  let a;
+//require('../../../jasmine/helpers/setup.js');
+import React from 'react';
+import {shallow} from 'enzyme';
 
-  it("and so is a spec", ()=> {
-    a = true;
-    //change
-    expect(a).toBe(true);
+import App from './App';
+import AuthForm from './AuthForm';
+
+describe("App", ()=> {
+  const wrapper = shallow(<App />);
+//  console.log(window);
+  it('should have an AuthForm', ()=> {
+    const authForm = wrapper.find('.auth-form');
+    expect(authForm.length).toBe(1);
   });
   
-  it("passes", ()=> {
-    expect(true).toBe(true);
-  })
 });
