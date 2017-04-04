@@ -7,12 +7,14 @@ import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
 //import poll from './routers/poll';
-import index from './routers/index';
+import user from './routers/user';
 
 const app = express();
 
 app.use(cors());
-app.use(morgan('dev'));
+if(process.env.NODE_ENV !== 'test') {
+  app.use(morgan('dev')); //don't litter tests with log
+}
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -32,7 +34,7 @@ app.use(express.static(path.resolve('dist')));
 app.get('/', (req, res)=> {
   res.sendFile(path.resolve('dist/index.html'));
 });
-app.use('/api', index);
+app.use('/api', user);
 //app.use('/poll', poll);
 
 export default app;
