@@ -4,12 +4,21 @@
 //    dev-specific babel config in .babelrc doesn't run.
 // 2. Disables Webpack-specific features that Jasmine doesn't understand.
 // 3. Registers babel for transpiling our code for testing.
+// 4. Opens a mongoDB connection if there is no open connection and imports models
+// 5. Starts an express server for supertest
 
 // This assures the .babelrc dev config (which includes
 // hot module reloading code) doesn't apply for tests.
 // Setting NODE_ENV to test instead of production because setting it to production will suppress error messaging
 // and propType validation warnings.
 process.env.NODE_ENV = 'test';
+
+require('../../util/mongooseSetup');
+
+var config = require('../../config.js').default;
+//var express = require('express');
+var app = require('../../src/server/app.js').default;
+var request = require('supertest');
 
 // Disable webpack-specific features for tests since
 // Jasmine doesn't know what to do with them.
@@ -39,5 +48,9 @@ Object.keys(document.defaultView).forEach((property) => {
 global.navigator = {
   userAgent: 'node.js'
 };
-
+var server = app.listen(config.TEST_PORT, ()=> {
+  console.log(`supertest server started at ${config.TEST_PORT}`)
+});
+global.agent = request.agent(server);
+//global.mongoose = mongoose.connect(config.DATA_URL);
 //documentRef = document;  //eslint-disable-line no-undef
