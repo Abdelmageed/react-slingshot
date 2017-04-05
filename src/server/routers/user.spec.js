@@ -2,6 +2,7 @@ import request from 'supertest';
 import express from 'express';
 import config from '../../../config';
 import mongoose from 'mongoose';
+import {seed, reset} from '../../../util/seedData';
 const User = mongoose.model('User');
 
 const testDone = (done)=> {
@@ -15,6 +16,13 @@ const testDone = (done)=> {
 };
 
 describe('user router', ()=> {
+  
+  beforeAll((done)=>  {
+    seed(done);
+  });
+  afterAll((done)=> {
+    reset(done);
+  });
   
   describe('POST /login', ()=> {
     
@@ -46,7 +54,7 @@ describe('user router', ()=> {
 
     });
   });
-  
+
   describe('POST /signup', () => {
     
     it('should sign up a user locally by username and password', (done)=> {
@@ -61,4 +69,6 @@ describe('user router', ()=> {
     });
     
   });
+  
+  
 });
