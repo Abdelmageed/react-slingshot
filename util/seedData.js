@@ -18,7 +18,6 @@ export function seed(done) {
   });
   user.save((err, savedUser)=> {
     if (err) throw err;
-    console.log(`user ${savedUser} saved`);
     done();
   });
 }
@@ -27,7 +26,6 @@ export function reset(done) {
 
   User.remove({}, (err)=> {
     if (err) throw err;
-    console.log('user collection reset');
     done();
   });
   }
