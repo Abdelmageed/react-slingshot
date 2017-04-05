@@ -1,4 +1,5 @@
 import request from 'supertest';
+import sinon from 'sinon';
 import express from 'express';
 import config from '../../../config';
 import mongoose from 'mongoose';
@@ -17,13 +18,20 @@ const testDone = (done)=> {
 
 describe('user router', ()=> {
   
+  let sandbox;
+  
   beforeAll((done)=>  {
     seed(done);
   });
   afterAll((done)=> {
     reset(done);
   });
-  
+  beforeEach(()=> {
+    sandbox = sinon.sandbox.create();
+  });
+  afterEach(()=> {
+    sandbox.restore();
+  });
   describe('POST /login', ()=> {
     
     it('should respond with 200 and user object on providing valid credentials', (done) => {
@@ -63,12 +71,46 @@ describe('user router', ()=> {
         .send('username=NewUser&password=NewPassword123')
         .expect(200)
         .expect((res)=> {
-          expect(res.body.user.username).toBe('NewUser');
+          expect(res.body.user.username).toBe('NewUser')
         })
         .end(testDone(done));
     });
     
   });
   
+  describe('GET /logout', ()=> {
+    //kinda tricky to test
+    //TODO test/simulate request cookies
+    it('should log out and remove req.user', (done)=> {
+      agent
+        .get('/api/logout')
+        .expect(200)
+        .end(testDone(done));
+    })
+  });
   
+  describe('POST /check_username', ()=> {
+    
+    it('should respond with {valid:false} if the username is unavailable', (done)=> {
+      const stubUser = sandbox.stub(User, 'findOne');
+      stubUser.yields(null, {user: 'user'});
+      
+      agent
+        .post('/api/check_username')
+        .send({username: 'name'})
+        .expect(200, {valid: false})
+        .end(testDone(done));
+    });
+    
+    it('should respond with {valid:true} if the username is available', (done)=> {
+      const stubUser = sandbox.stub(User, 'findOne');
+      stubUser.yields(null, null);
+      
+      agent
+        .post('/api/check_username')
+        .send({username: 'name'})
+        .expect(200, {valid: true})
+        .end(testDone(done));
+    });
+  });
 });
