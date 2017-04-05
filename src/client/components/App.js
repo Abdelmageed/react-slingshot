@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import AuthForm from '../containers/AuthForm';
+import {Button} from 'react-bootstrap';
 import {axiosInstance as axios, getIt} from '../endpoints';
 
 export default class App extends Component{
@@ -31,7 +32,7 @@ export default class App extends Component{
   render(){
     return (
       <div>
-        <AuthForm className="auth-form"/>
+        <AuthForm />
       </div>
     )
   }
