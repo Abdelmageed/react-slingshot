@@ -35,10 +35,8 @@ router.get('/logout', (req, res)=> {
 router.post('/check_username/', (req, res)=> {
   User.findOne({'local.username': req.body.username}, (err, doc)=> {
     if (doc){
-      console.log('invalid')
       res.send({valid: false});
     } else {
-      console.log('valid');
       res.send({valid: true});
     }
     res.end();
