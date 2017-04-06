@@ -33,7 +33,9 @@ describe('user router', ()=> {
     sandbox.restore();
   });
   describe('POST /login', ()=> {
-    
+    //using 'Abdelmageed' as a username for manual testing
+    //could break if you don't provide the same password as
+    //'passowrd123'
     it('should respond with 200 and user object on providing valid credentials', (done) => {
       const successMessage = "logged in successfuly";
       agent
