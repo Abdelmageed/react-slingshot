@@ -13,9 +13,9 @@ export default class UserDropdown extends Component {
       <NavDropdown 
        title={this.props.username}
        id="userDropdown">
-       <LinkContainer to="/my-polls">
+       <LinkContainer to="/my-profile">
         <MenuItem>
-          My Polls
+          My Profile
         </MenuItem>
         </LinkContainer>
         <MenuItem divider />

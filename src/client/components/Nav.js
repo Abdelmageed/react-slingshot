@@ -16,7 +16,7 @@ export default class Nav extends Component{
         <Bootstrap.Navbar>
         <Bootstrap.Navbar.Header>
           <Bootstrap.Navbar.Brand>
-            <IndexLink style={{cursor:'pointer'}} to="/">Voter</IndexLink>
+            <IndexLink style={{cursor:'pointer'}} to="/">React-Slingshot</IndexLink>
           </Bootstrap.Navbar.Brand>
         </Bootstrap.Navbar.Header>
          <Bootstrap.Nav

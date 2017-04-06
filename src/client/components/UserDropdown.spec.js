@@ -29,11 +29,11 @@ describe('UserDropdown', ()=> {
     expect(spy).toHaveBeenCalled();
   });
   
-  it('has a link to "MyPolls"', ()=> {
+  it('has a link to "MyProfile"', ()=> {
     
     const link = wrapper.find(LinkContainer);
     expect(link.length).toBe(1);
-    expect(link.prop('to')).toBe('/my-polls');
+    expect(link.prop('to')).toBe('/my-profile');
   });
   
 });
