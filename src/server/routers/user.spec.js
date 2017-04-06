@@ -46,21 +46,25 @@ describe('user router', ()=> {
         .end(testDone(done));
     });
     
-    it('should respond with 401 on invalid credentials', (done) => {
-      const unauthorized = "Unauthorized"
+    it('should respond with 401 on invalid password', (done) => {
+      const unauthorized = "Unauthorized";
       agent
         .post('/api/login')
         .send('username=Abdelmageed&password=password1234')
         .expect(401, unauthorized)
         .end(testDone(done))
-
+      });
+    
+    it('should respond with 401 on invalid username', (done) => {
+      const unauthorized = "Unauthorized";
       agent
         .post('/api/login')
-        .send('username=Abdelmageedz&password=password1234')
+        .send('username=Abdelmageedz&password=password123')
         .expect(401, unauthorized)
         .end(testDone(done));
+      });
 
-    });
+    
   });
 
   describe('POST /signup', () => {
