@@ -1,7 +1,7 @@
 import User from './models/User';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-import config from '../../config';
+import config from '../../configs/main';
 const localStrategy = LocalStrategy.Strategy;
 
 passport.use(new localStrategy((username, password, done)=> {

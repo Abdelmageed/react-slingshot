@@ -24,7 +24,7 @@ export const login = (credentials)=> {
       }
     })
       .catch((error)=> {
-        const errorMsg = error.response | errors.server; 
+        const errorMsg = error.response || errors.server; 
         dispatch(loginFailure(errorMsg));
     });
   };

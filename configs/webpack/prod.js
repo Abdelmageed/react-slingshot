@@ -17,10 +17,10 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.json']
   },
   devtool: 'source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
-  entry: path.resolve(__dirname, 'src/client/index'),
+  entry: path.join(__dirname, '..', '..', 'src/client/index'),
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.join(__dirname, '..', '..', 'dist'),
     publicPath: '/',
     filename: '[name].[chunkhash].js'
   },
@@ -36,7 +36,7 @@ module.exports = {
 
     // Generate HTML file that contains references to generated bundles. See here for how this works: https://github.com/ampedandwired/html-webpack-plugin#basic-usage
     new HtmlWebpackPlugin({
-      template: 'src/client/index.ejs',
+      template: path.join(__dirname, '..', '..', 'src/client/index.ejs'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -64,7 +64,7 @@ module.exports = {
       noInfo: true, // set to false to see a list of every file being bundled.
       options: {
         sassLoader: {
-          includePaths: [path.resolve(__dirname, 'src', 'scss')]
+          includePaths: [path.join(__dirname, '..', '..', 'src', 'scss')]
         },
         context: '/',
         postcss: () => [autoprefixer],

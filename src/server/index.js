@@ -1,12 +1,8 @@
 import mongoose from 'mongoose';
 
-import config from '../../config';
+import config from '../../configs/main';
 import app from './app';
-import User from './models/User';
-//var server;
-//if(server && server.close){
-//  server.close();
-//}
+
 const dev = (process.env.NODE_ENV !== 'production');
 let server;
 var isPortTaken = function(port, fn) {
@@ -41,21 +37,6 @@ if(dev) {
   });
 }
 
-//process.on('exit', (code) => {
-//  setTimeout(()=> {
-//    server.close();
-//  }, 0);
-////  console.log('server closed, now killing');
-////  process.kill();
-//});
-//, function() {
-//  console.log(`express server listening on port ${config.PORT}`);
-//}
-
-const user = new User({local: {username: 'Abdelmageed', password: 'password123'}});
-user.save((err, newUser)=> {
-  console.log('user saved');
-});
 if(!mongoose.connection.db)
   mongoose.connect(config.DATA_URL);
 console.log(`connected to db at ${config.DATA_URL}`)

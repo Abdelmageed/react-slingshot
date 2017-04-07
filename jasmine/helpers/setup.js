@@ -15,7 +15,7 @@ process.env.NODE_ENV = 'test';
 
 require('../../util/mongooseSetup');
 
-var config = require('../../config.js').default;
+var config = require('../../configs/main.js').default;
 //var express = require('express');
 var app = require('../../src/server/app.js').default;
 var request = require('supertest');

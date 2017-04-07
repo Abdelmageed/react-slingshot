@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import config from '../config';
+import config from '../configs/main';
 
 if(!mongoose.connection._hasOpened) {
   mongoose.connect(config.DATA_URL, ()=> {

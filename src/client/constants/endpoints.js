@@ -1,5 +1,5 @@
 import axios from 'axios';
-import config from '../../../config';
+import config from '../../../configs/main';
 const apiUrl = `http://localhost:${config.PORT}/api`;
 export const axiosInstance = axios.create({
   baseURL: apiUrl,

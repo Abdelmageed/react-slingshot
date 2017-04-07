@@ -11,9 +11,9 @@ gulp.registry(hub);
 //That runs outside of gulp tasks, and blocks nodemon
 //instead import the config with the webpack compiler on task run
 gulp.task('browser-sync:dev', function(done) {
-  browserSync.init(require('../browserSync.config.dev.js'), done);
+  browserSync.init(require('../configs/browserSync/dev.js'), done);
 });
 
 gulp.task('browser-sync:prod', function(done) {
-  browserSync.init(require('../browserSync.config.prod.js'), done);
+  browserSync.init(require('../configs/browserSync/prod.js'), done);
 });

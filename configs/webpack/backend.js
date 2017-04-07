@@ -12,7 +12,7 @@ fs.readdirSync('node_modules')
   });
 
 module.exports = {
-  entry: './src/server/index.js',
+  entry: path.join(__dirname, '..', '..', 'src/server/index.js'),
   target: 'node',
   module: {
     loaders: [
@@ -21,7 +21,7 @@ module.exports = {
   },
   stats: "errors-only",
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '..', '..', 'dist'),
     filename: 'backend.js'
   },
   externals: nodeModules,

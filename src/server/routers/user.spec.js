@@ -1,7 +1,7 @@
 import request from 'supertest';
 import sinon from 'sinon';
 import express from 'express';
-import config from '../../../config';
+import config from '../../../configs/main';
 import mongoose from 'mongoose';
 import {seed, reset} from '../../../util/seedData';
 const User = mongoose.model('User');

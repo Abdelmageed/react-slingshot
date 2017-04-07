@@ -5,8 +5,8 @@ import rimraf from'rimraf';
 import fs from'fs';
 import webpack from'webpack';
 
-import webpackProdConfig from'../webpack.config.prod';
-import webpackBackendConfig from '../webpack.config.backend';
+import webpackProdConfig from'../configs/webpack/prod';
+import webpackBackendConfig from '../configs/webpack/backend';
 import {onBuild} from './util';
 
 gulp.task('build:front', function (done) {

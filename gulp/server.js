@@ -8,7 +8,7 @@ import Cache from 'gulp-file-cache';
 const cache = new Cache();
 import shell from 'gulp-shell'; 
 
-import backendConfig from '../webpack.config.backend';
+import backendConfig from '../configs/webpack/backend';
 import {onBuild} from './util';
 
 
