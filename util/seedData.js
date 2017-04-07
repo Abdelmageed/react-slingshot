@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 import config from '../configs/main';
-//import User from '../src/server/models/User';
 
 if(!mongoose.connection._hasOpened) {
   mongoose.connect(config.DATA_URL);

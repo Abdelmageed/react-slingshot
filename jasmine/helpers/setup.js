@@ -16,7 +16,6 @@ process.env.NODE_ENV = 'test';
 require('../../util/mongooseSetup');
 
 var config = require('../../configs/main.js').default;
-//var express = require('express');
 var app = require('../../src/server/app.js').default;
 var request = require('supertest');
 
@@ -52,5 +51,5 @@ var server = app.listen(config.TEST_PORT, ()=> {
   console.log(`supertest server started at ${config.TEST_PORT}`)
 });
 global.agent = request.agent(server);
-//global.mongoose = mongoose.connect(config.DATA_URL);
+
 //documentRef = document;  //eslint-disable-line no-undef

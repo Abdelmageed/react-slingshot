@@ -1,6 +1,5 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-//import {expect} from 'chai';
 import sinon from 'sinon';
 import {FormControl} from 'react-bootstrap';
 import * as errors from '../constants/errors';
@@ -23,11 +22,9 @@ describe('SignupForm', ()=> {
       usernameControl,
       submitButton,
       spyToggle,
-//      submit,
       spySubmit;
   
   beforeEach(()=> {
-//    submit = (state)=> {};
     
     spySubmit = jasmine.createSpy('spySubmit');
     spyToggle = jasmine.createSpy('spyToggle');
@@ -38,11 +35,6 @@ describe('SignupForm', ()=> {
     spyOn(SignupForm.prototype, 'checkUsername').and.callThrough();
 
 
-//    spyHandleChange = sinon.spy(SignupForm.prototype, 'handleChange');
-//    spyValidatePassword = sinon.spy(SignupForm.prototype, 'validatePassword');
-//    spyRemovePasswordError = sinon.spy(SignupForm.prototype, 'removePasswordError');
-//    spyValidateSubmit = sinon.spy(SignupForm.prototype, 'validateSubmit');
-//    spyCheckUsername = sinon.spy(SignupForm.prototype, 'checkUsername');
 
     wrapper = mount(<SignupForm 
     submit={spySubmit}
@@ -57,11 +49,6 @@ describe('SignupForm', ()=> {
   });
   
   afterEach(()=> {
-//    spyValidatePassword.restore();
-//    spyRemovePasswordError.restore();
-//    spyHandleChange.restore();
-//    spyValidateSubmit.restore();
-//    spyCheckUsername.restore();
     wrapper.unmount();
   });
   

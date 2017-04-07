@@ -5,7 +5,6 @@ import User from '../models/User';
 const router = express.Router();
 
 router.post('/login', passport.authenticate('local'), (req, res)=> {
-//  console.log(req.user.local.username);
   if(!req.user) {
     res.status(401);
     res.end();

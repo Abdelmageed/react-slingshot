@@ -1,9 +1,7 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-//import {expect} from 'chai';
 import {LoginForm} from './LoginForm';
 import {FormGroup} from 'react-bootstrap';
-//import sinon from 'sinon';
 
 describe('Login Form', ()=> {
   
@@ -41,7 +39,6 @@ describe('Login Form', ()=> {
       submit={submit}
      />);
      submitButton = wrapper.find('.login-button');
-//      console.log(wrapper);
     });
     
     afterEach(()=> {
@@ -54,10 +51,7 @@ describe('Login Form', ()=> {
     expect(submitButton.length).toBe(1);
     
     submitButton.simulate('click');
-//    expect(spyValidateSubmit.called).to.be.true;
-//    expect(spySubmit.called).to.be.false;
       expect(LoginForm.prototype.validateSubmit).toHaveBeenCalled();
-//      expect(submit).toHaveBeenCalled();
     
     wrapper.setState({
       username: 'name',
@@ -68,10 +62,6 @@ describe('Login Form', ()=> {
     
     submitButton.simulate('click');
     expect(LoginForm.prototype.validateSubmit).toHaveBeenCalled();
-//    expect(spyValidateSubmit.called).to.be.true;
-//    setTimeout(()=> {
-//      expect(submit).toHaveBeenCalled();
-//    }, 10);
     
   });
   
